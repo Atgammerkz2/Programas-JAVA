@@ -12,7 +12,7 @@
 	<artifactId>api-michael</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-michael</name>
-	<description>API para estudo de POO</description>
+	<description>API para estudo de POO feita em Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
