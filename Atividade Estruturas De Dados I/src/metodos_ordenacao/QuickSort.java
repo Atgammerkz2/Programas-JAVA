@@ -2,7 +2,7 @@ package metodos_ordenacao;
 
 public class QuickSort {
     public static void ordenar(int[] vetor){
-        quickSort(vetor, 0, vetor.length);
+        quickSort(vetor, 0, vetor.length - 1);
     }
 
     private static void quickSort(int[] vetor, int inicio, int fim){

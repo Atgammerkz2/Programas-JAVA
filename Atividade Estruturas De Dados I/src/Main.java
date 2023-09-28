@@ -3,6 +3,7 @@ import metodos_ordenacao.HeapSort;
 import metodos_ordenacao.MergeSort;
 import metodos_ordenacao.QuickSort;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -34,11 +35,11 @@ public class Main {
             }
         } else {
             Random r = new Random();
-            vetor = r.ints(tam, 1,99).toArray();
+            Arrays.setAll(vetor, x -> r.nextInt(99));
         }
 
         opcao = -1;
-        while (opcao < 1 && opcao > 4){
+        while (opcao < 1 || opcao > 4){
             System.out.println("Qual método de ordenação de vetores você deseja usar?");
             System.out.println("1 - Ordenação por BubbleSort");
             System.out.println("2 - Ordenação por QuickSort");
@@ -48,10 +49,16 @@ public class Main {
             try {
                 opcao = s.nextInt();
             } catch (Exception ex){ }
-            if(opcao < 1 && opcao > 4){
+            if(opcao < 1 || opcao > 4){
                 System.out.println("Opção inválida!");
             }
         }
+
+        System.out.print("\nVetor informado: [ ");
+        for (int i = 0; i < tam; i++){
+            System.out.print(vetor[i] + " ");
+        }
+        System.out.print("]\n");
 
         String algoritmoSelecionado = "";
 
@@ -76,12 +83,6 @@ public class Main {
                 algoritmoSelecionado = "HeapSort";
                 break;
         }
-
-        System.out.print("\nVetor informado: [ ");
-        for (int i = 0; i < tam; i++){
-            System.out.print(vetor[i] + " ");
-        }
-        System.out.print("]\n");
 
         System.out.printf("Vetor ordenado com o algoritmo %s: [ ", algoritmoSelecionado);
         for (int i = 0; i < tam; i++){
