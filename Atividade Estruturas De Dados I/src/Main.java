@@ -1,8 +1,7 @@
-import metodos_ordenacao.BubbleSort;
-import metodos_ordenacao.HeapSort;
-import metodos_ordenacao.MergeSort;
-import metodos_ordenacao.QuickSort;
+//Aluno: Michael Marinho da Silva
+//Turma: Engenharia de Software - 3º Período
 
+import metodos_ordenacao.*;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
