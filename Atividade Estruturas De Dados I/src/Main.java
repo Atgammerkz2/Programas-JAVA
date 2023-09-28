@@ -38,19 +38,24 @@ public class Main {
         }
 
         opcao = -1;
-        while (opcao < 1 || opcao > 4){
+        while (opcao < 0 || opcao > 4){
             System.out.println("Qual método de ordenação de vetores você deseja usar?");
             System.out.println("1 - Ordenação por BubbleSort");
             System.out.println("2 - Ordenação por QuickSort");
             System.out.println("3 - Ordenação por MergeSort");
             System.out.println("4 - Ordenação por HeapSort");
+            System.out.println("0 - Sair");
 
             try {
                 opcao = s.nextInt();
             } catch (Exception ex){ }
-            if(opcao < 1 || opcao > 4){
+            if(opcao < 0 || opcao > 4){
                 System.out.println("Opção inválida!");
             }
+        }
+
+        if(opcao == 0){
+            System.exit(0);
         }
 
         System.out.print("\nVetor informado: [ ");
