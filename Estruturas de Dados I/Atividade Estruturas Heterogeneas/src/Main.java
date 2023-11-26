@@ -1,3 +1,6 @@
+//Turma: Engenharia de Software - 3º Período
+//Aluno: Michael Marinho da Silva
+
 import model.Aluno;
 
 import java.util.Scanner;
