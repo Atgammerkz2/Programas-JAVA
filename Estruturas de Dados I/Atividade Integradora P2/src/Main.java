@@ -46,6 +46,10 @@ public class Main {
                     excluirAluno();
                     break;
 
+                case 6:
+                    excluirNota();
+                    break;
+
                 case 7:
                     return;
 
@@ -137,6 +141,32 @@ public class Main {
             } else{
                 System.out.println("Este aluno possui notas, logo, não poderá ser excluído.\n");
             }
+        }
+    }
+
+    private static void excluirNota() {
+        if(alunos.isEmpty()){
+            System.out.println("Pilha de alunos vazia!");
+            return;
+        }
+
+        System.out.print("Informe o número do aluno ao qual você deseja excluir a nota: ");
+        int numAluno = scanner.nextInt();
+
+        try {
+            Aluno aluno = alunos.elementAt(numAluno - 1);
+
+            if(aluno.getNotas().isEmpty()){
+                System.out.println("\nFila vazia (aluno sem notas).");
+            } else {
+                System.out.printf("Você tem certeza que deseja excluir a primeira nota cadastrada do aluno %s? (S/N) ", aluno.getNome());
+                if(scanner.next().equalsIgnoreCase("S")){
+                    aluno.getNotas().remove();
+                    System.out.println("\nNota excluída com sucesso!");
+                }
+            }
+        } catch (Exception ex){
+            System.out.println("\nAluno não cadastrado!");
         }
     }
 }
