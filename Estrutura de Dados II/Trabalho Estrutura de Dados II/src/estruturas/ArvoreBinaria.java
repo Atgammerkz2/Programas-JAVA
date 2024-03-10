@@ -117,10 +117,10 @@ public class ArvoreBinaria {
             System.out.println("Visitado nó: " + raiz.valor);
         }
 
-        No noAtual = raiz;
+        No noAtual = null;
 
-        if(noAtual.valor == valorProcurado){
-            return noAtual;
+        if(raiz.valor == valorProcurado){
+            return raiz;
         } else if (raiz.esquerdo != null){
             noAtual = buscarPreOrdem(raiz.esquerdo, valorProcurado, exibirCaminho);
         }
@@ -136,34 +136,23 @@ public class ArvoreBinaria {
         No noAtual = null;
 
         if(raiz.esquerdo != null){
-            if(exibirCaminho) {
+            if(exibirCaminho){
                 System.out.println("Visitado nó: " + raiz.esquerdo.valor);
             }
-
-            if(raiz.esquerdo.valor == valorProcurado){
-                return raiz.esquerdo;
-            } else if(raiz.esquerdo.esquerdo != null){
-                noAtual = buscarIntraOrdem(raiz.esquerdo, valorProcurado, exibirCaminho);
-            }
+            noAtual = buscarIntraOrdem(raiz.esquerdo, valorProcurado, exibirCaminho);
         }
 
-        if(noAtual != null){
-            return noAtual;
-        }
-
-        if(raiz.valor == valorProcurado){
-            if(exibirCaminho) {
+        if(noAtual == null){
+            if(exibirCaminho && raiz.esquerdo != null){
                 System.out.println("Visitado nó: " + raiz.valor);
             }
-            return raiz;
-        } else if(raiz.direito != null){
-            if(exibirCaminho) {
-                System.out.println("Visitado nó: " + raiz.direito.valor);
-            }
 
-            if(raiz.direito.valor == valorProcurado){
-                return raiz.direito;
-            } else if(raiz.direito.esquerdo != null){
+            if(raiz.valor == valorProcurado){
+                noAtual = raiz;
+            } else if(raiz.direito != null){
+                if(exibirCaminho){
+                    System.out.println("Visitado nó: " + raiz.direito.valor);
+                }
                 noAtual = buscarIntraOrdem(raiz.direito, valorProcurado, exibirCaminho);
             }
         }

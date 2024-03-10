@@ -1,4 +1,6 @@
 import estruturas.ArvoreBinaria;
+import estruturas.EstrategiaBusca;
+import estruturas.No;
 
 import java.util.Scanner;
 
@@ -12,9 +14,8 @@ public class Main {
             int opcao = criarMenu(new String[] {
                 "Inserir nós na árvore binária",
                 "Consultar nós da árvore binária",
-                "Excluir nós da árvore binária",
-                "Pesquisar valores na árvore binária"
-            });
+                "Excluir nós da árvore binária"
+            }, "Menu Principal");
 
             switch (opcao){
                 case 1:
@@ -22,7 +23,7 @@ public class Main {
                         opcao = criarMenu(new String[]{
                             "Adicionar um novo nó na árvore",
                             "Criar uma nova árvore com valores aleatórios"
-                        });
+                        }, "Selecione uma opção");
 
                         switch (opcao){
                             case 1:
@@ -42,16 +43,66 @@ public class Main {
                     }
                     break;
 
+                case 2:
+                    while (opcao != -1){
+                        opcao = criarMenu(new String[]{
+                            "Exibir árvore binária",
+                            "Verificar se um valor está presente na árvore",
+                            "Pesquisar um valor na árvore por um método específico"
+                        }, "Selecione uma opção");
+
+                        switch (opcao){
+                            case 1:
+                                arvore.imprimirArvore();
+                                break;
+
+                            case 2:
+                                System.out.print("Informe o valor que deseja procurar: ");
+                                int valor = s.nextInt();
+                                No tmp = arvore.buscarNo(valor, EstrategiaBusca.PRE_ORDEM, false);
+                                arvore.imprimirArvore();
+                                if(tmp != null){
+                                    System.out.println("O valor " + valor + " está presente na árvore.");
+                                } else {
+                                    System.out.println("O valor " + valor + " não está presente na árvore.");
+                                }
+                                break;
+
+                            case 3:
+                                System.out.print("Informe o valor que deseja procurar: ");
+                                int valorProc = s.nextInt();
+                                opcao = criarMenu(new String[]{
+                                    "Pré-ordem",
+                                    "Intraordem",
+                                    "Pós-ordem"
+                                }, "Estratégia de busca");
+
+                                if(opcao == -1){
+                                    opcao = 1;
+                                    break;
+                                }
+                                arvore.imprimirArvore();
+                                No tmpNode = arvore.buscarNo(valorProc, EstrategiaBusca.converter(opcao), true);
+                                if(tmpNode != null){
+                                    System.out.println("O valor " + valorProc + " está presente na árvore.");
+                                } else {
+                                    System.out.println("O valor " + valorProc + " não está presente na árvore.");
+                                }
+                                break;
+                        }
+                    }
+                    break;
+
                 case -1:
                     return;
             }
         }
     }
 
-    private static int criarMenu(String[] opcoes){
+    private static int criarMenu(String[] opcoes, String titulo){
         int opcao = -1;
         while (opcao < 0 || opcao > opcoes.length + 1) {
-            System.out.println("====== Selecione uma opção ======");
+            System.out.println("====== " + titulo + " ======");
 
             int i;
             for (i = 0; i < opcoes.length; i++){
