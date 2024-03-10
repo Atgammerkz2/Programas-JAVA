@@ -90,10 +90,126 @@ public class ArvoreBinaria {
 
         for(int i = 0; i < quantidadeNos; i++){
             Random r = new Random();
-            arvore.inserirNo(r.nextInt(999));
+            arvore.inserirNo(r.nextInt(100));
         }
 
         return arvore;
+    }
+
+    public No buscarNo(int valorProcurado, EstrategiaBusca estrategiaBusca, boolean exibirCaminho){
+        switch (estrategiaBusca){
+            case PRE_ORDEM:
+                return buscarPreOrdem(this.raiz, valorProcurado, exibirCaminho);
+
+            case INTRA_ORDEM:
+                return buscarIntraOrdem(this.raiz, valorProcurado, exibirCaminho);
+
+            case POS_ORDEM:
+                return buscarPosOrdem(this.raiz, valorProcurado, exibirCaminho);
+
+            default:
+                return null;
+        }
+    }
+
+    private No buscarPreOrdem(No raiz, int valorProcurado, boolean exibirCaminho){
+        if(exibirCaminho){
+            System.out.println("Visitado nó: " + raiz.valor);
+        }
+
+        No noAtual = raiz;
+
+        if(noAtual.valor == valorProcurado){
+            return noAtual;
+        } else if (raiz.esquerdo != null){
+            noAtual = buscarPreOrdem(raiz.esquerdo, valorProcurado, exibirCaminho);
+        }
+
+        if(noAtual == null && raiz.direito != null){
+            noAtual = buscarPreOrdem(raiz.direito, valorProcurado, exibirCaminho);
+        }
+
+        return noAtual;
+    }
+
+    private No buscarIntraOrdem(No raiz, int valorProcurado, boolean exibirCaminho){
+        No noAtual = null;
+
+        if(raiz.esquerdo != null){
+            if(exibirCaminho) {
+                System.out.println("Visitado nó: " + raiz.esquerdo.valor);
+            }
+
+            if(raiz.esquerdo.valor == valorProcurado){
+                return raiz.esquerdo;
+            } else if(raiz.esquerdo.esquerdo != null){
+                noAtual = buscarIntraOrdem(raiz.esquerdo, valorProcurado, exibirCaminho);
+            }
+        }
+
+        if(noAtual != null){
+            return noAtual;
+        }
+
+        if(raiz.valor == valorProcurado){
+            if(exibirCaminho) {
+                System.out.println("Visitado nó: " + raiz.valor);
+            }
+            return raiz;
+        } else if(raiz.direito != null){
+            if(exibirCaminho) {
+                System.out.println("Visitado nó: " + raiz.direito.valor);
+            }
+
+            if(raiz.direito.valor == valorProcurado){
+                return raiz.direito;
+            } else if(raiz.direito.esquerdo != null){
+                noAtual = buscarIntraOrdem(raiz.direito, valorProcurado, exibirCaminho);
+            }
+        }
+
+        return noAtual;
+    }
+
+    private No buscarPosOrdem(No raiz, int valorProcurado, boolean exibirCaminho){
+        No noAtual = null;
+
+        if(raiz.esquerdo != null){
+            if(exibirCaminho) {
+                System.out.println("Visitado nó: " + raiz.esquerdo.valor);
+            }
+
+            if(raiz.esquerdo.valor == valorProcurado){
+                return raiz.esquerdo;
+            } else if(raiz.esquerdo.esquerdo != null){
+                noAtual = buscarPosOrdem(raiz.esquerdo, valorProcurado, exibirCaminho);
+            }
+        }
+
+        if(noAtual != null){
+            return noAtual;
+        }
+
+        if(raiz.direito != null){
+            if(exibirCaminho) {
+                System.out.println("Visitado nó: " + raiz.direito.valor);
+            }
+
+            if(raiz.direito.valor == valorProcurado){
+                return raiz.direito;
+            } else if(raiz.direito.esquerdo != null){
+                noAtual = buscarPosOrdem(raiz.direito, valorProcurado, exibirCaminho);
+            }
+        }
+
+        if(raiz.valor == valorProcurado){
+            if(exibirCaminho) {
+                System.out.println("Visitado nó: " + raiz.valor);
+            }
+            return raiz;
+        }
+
+        return noAtual;
     }
 }
 
