@@ -1,7 +1,11 @@
+import estruturas.ArvoreBinaria;
+
 import java.util.Scanner;
 
 public class Main {
     private static Scanner s = new Scanner(System.in);
+
+    private static ArvoreBinaria arvore = new ArvoreBinaria();
 
     public static void main(String[] args){
         while (true) {
@@ -13,6 +17,31 @@ public class Main {
             });
 
             switch (opcao){
+                case 1:
+                    while (opcao != -1){
+                        opcao = criarMenu(new String[]{
+                            "Adicionar um novo nó na árvore",
+                            "Criar uma nova árvore com valores aleatórios"
+                        });
+
+                        switch (opcao){
+                            case 1:
+                                System.out.print("Informe o valor do nó: ");
+                                arvore.inserirNo(s.nextInt());
+                                arvore.imprimirArvore();
+                                opcao = -1;
+                                break;
+
+                            case 2:
+                                System.out.print("\nInforme a quantidade de nós desejada: ");
+                                arvore = ArvoreBinaria.gerarAleatoria(s.nextInt());
+                                arvore.imprimirArvore();
+                                opcao = -1;
+                                break;
+                        }
+                    }
+                    break;
+
                 case -1:
                     return;
             }
@@ -38,6 +67,7 @@ public class Main {
                 System.out.println("\nOpção inválida!\n");
             }
 
+            System.out.println();
             break;
         }
 

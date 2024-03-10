@@ -2,6 +2,7 @@ package estruturas;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 public class ArvoreBinaria {
     public No raiz;
@@ -25,14 +26,14 @@ public class ArvoreBinaria {
         return raiz;
     }
 
-    public static int calcularProfundidade(No raiz) {
-        if (raiz == null) {
+    public int calcularProfundidade() {
+        if (this.raiz == null) {
             return 0;  // Se a árvore estiver vazia, a altura é 0.
         }
 
         int altura = 0;  // Inicializa a altura como 0.
         Queue<No> fila = new LinkedList<>();  // Cria uma fila para percorrer os nós.
-        fila.offer(raiz);  // Adiciona o nó raiz à fila.
+        fila.offer(this.raiz);  // Adiciona o nó raiz à fila.
 
         while (!fila.isEmpty()) {  // Enquanto a fila não estiver vazia.
             int numeroNos = fila.size();  // Obtém o número de nós no nível atual.
@@ -51,18 +52,48 @@ public class ArvoreBinaria {
         return altura;  // Retorna a altura calculada.
     }
 
-    public void imprimirArvore(No raiz, int nivel) {
+    private void imprimir(No raiz, int nivel) {
         if (raiz != null) {
-            imprimirArvore(raiz.direito, nivel + 1);
+            imprimir(raiz.direito, nivel + 1);
+
+            if(raiz.direito != null){
+                for (int i = 0; i < nivel; i++) {
+                    System.out.print("   ");
+                }
+                System.out.print("  /\n");
+            }
 
             for (int i = 0; i < nivel; i++) {
                 System.out.print("   ");
             }
-
             System.out.println(raiz.valor);
 
-            imprimirArvore(raiz.esquerdo, nivel + 1);
+            if(raiz.esquerdo != null){
+                for (int i = 0; i < nivel; i++) {
+                    System.out.print("   ");
+                }
+                System.out.print("  \\\n");
+            }
+
+            imprimir(raiz.esquerdo, nivel + 1);
         }
+    }
+
+    public void imprimirArvore(){
+        System.out.print("\n====== Árvore Binária =====\n");
+        imprimir(this.raiz, 0);
+        System.out.println();
+    }
+
+    public static ArvoreBinaria gerarAleatoria(int quantidadeNos){
+        ArvoreBinaria arvore = new ArvoreBinaria();
+
+        for(int i = 0; i < quantidadeNos; i++){
+            Random r = new Random();
+            arvore.inserirNo(r.nextInt(999));
+        }
+
+        return arvore;
     }
 }
 
