@@ -26,32 +26,6 @@ public class ArvoreBinaria {
         return raiz;
     }
 
-    public int calcularProfundidade() {
-        if (this.raiz == null) {
-            return 0;  // Se a árvore estiver vazia, a altura é 0.
-        }
-
-        int altura = 0;  // Inicializa a altura como 0.
-        Queue<No> fila = new LinkedList<>();  // Cria uma fila para percorrer os nós.
-        fila.offer(this.raiz);  // Adiciona o nó raiz à fila.
-
-        while (!fila.isEmpty()) {  // Enquanto a fila não estiver vazia.
-            int numeroNos = fila.size();  // Obtém o número de nós no nível atual.
-            for (int i = 0; i < numeroNos; i++) {
-                No node = fila.poll();  // Remove o nó da frente da fila.
-                if (node.esquerdo != null) {
-                    fila.offer(node.esquerdo);  // Adiciona o nó à esquerda à fila.
-                }
-                if (node.direito != null) {
-                    fila.offer(node.direito);  // Adiciona o nó à direita à fila.
-                }
-            }
-            altura++;  // Incrementa a altura após processar um nível.
-        }
-
-        return altura;  // Retorna a altura calculada.
-    }
-
     private void imprimir(No raiz, int nivel) {
         if (raiz != null) {
             imprimir(raiz.direito, nivel + 1);

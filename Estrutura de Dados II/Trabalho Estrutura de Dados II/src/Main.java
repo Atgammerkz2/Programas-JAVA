@@ -9,13 +9,13 @@ public class Main {
 
     private static ArvoreBinaria arvore = new ArvoreBinaria();
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         while (true) {
             int opcao = criarMenu(new String[] {
                 "Inserir nós na árvore binária",
                 "Consultar nós da árvore binária",
                 "Excluir nós da árvore binária"
-            }, "Menu Principal");
+            }, "Menu Principal", true);
 
             switch (opcao){
                 case 1:
@@ -23,7 +23,7 @@ public class Main {
                         opcao = criarMenu(new String[]{
                             "Adicionar um novo nó na árvore",
                             "Criar uma nova árvore com valores aleatórios"
-                        }, "Selecione uma opção");
+                        }, "Adicionar Nós", false);
 
                         switch (opcao){
                             case 1:
@@ -49,7 +49,7 @@ public class Main {
                             "Exibir árvore binária",
                             "Verificar se um valor está presente na árvore",
                             "Pesquisar um valor na árvore por um método específico"
-                        }, "Selecione uma opção");
+                        }, "Pesquisar Nós", false);
 
                         switch (opcao){
                             case 1:
@@ -75,7 +75,7 @@ public class Main {
                                     "Pré-ordem",
                                     "Intraordem",
                                     "Pós-ordem"
-                                }, "Estratégia de busca");
+                                }, "Estratégia de busca", false);
 
                                 if(opcao == -1){
                                     opcao = 1;
@@ -94,17 +94,38 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.print("Informe o valor do nó a ser deletado: ");
-                    int valor_deletar = s.nextInt();
+                    while (opcao != -1){
+                        opcao = criarMenu(new String[]{
+                                "Excluir toda a árvore binária",
+                                "Excluir um nó específico",
+                        }, "Excluir Nós", false);
 
-                    No noDeletar = arvore.buscarNo(valor_deletar, EstrategiaBusca.PRE_ORDEM, false);
-                    if(noDeletar != null){
-                        arvore.deletarNo(noDeletar);
-                    } else {
-                        arvore.imprimirArvore();
-                        System.out.println("O valor informado não existe na árvore binária!");
+                        switch (opcao){
+                            case 1:
+                            {
+                                arvore = new ArvoreBinaria();
+                                System.out.println("Árvore binária excluída com sucesso!");
+                                opcao = -1;
+                                break;
+                            }
+
+                            case 2:
+                            {
+                                System.out.print("Informe o valor do nó a ser deletado: ");
+                                int valor_deletar = s.nextInt();
+
+                                No noDeletar = arvore.buscarNo(valor_deletar, EstrategiaBusca.PRE_ORDEM, false);
+                                if(noDeletar != null){
+                                    arvore.deletarNo(noDeletar);
+                                } else {
+                                    arvore.imprimirArvore();
+                                    System.out.println("O valor informado não existe na árvore binária!");
+                                }
+                                opcao = -1;
+                                break;
+                            }
+                        }
                     }
-
                     break;
 
                 case -1:
@@ -113,7 +134,7 @@ public class Main {
         }
     }
 
-    private static int criarMenu(String[] opcoes, String titulo){
+    private static int criarMenu(String[] opcoes, String titulo, boolean sair){
         int opcao = -1;
         while (opcao < 0 || opcao > opcoes.length + 1) {
             System.out.println("====== " + titulo + " ======");
@@ -122,7 +143,9 @@ public class Main {
             for (i = 0; i < opcoes.length; i++){
                 System.out.println((i+1) + " - " + opcoes[i]);
             }
-            System.out.println((i+1) + " - Sair");
+
+            String optSair = sair ? "Sair" : "Voltar";
+            System.out.println((i+1) + " - " + optSair);
             System.out.print("Informe a opção desejada: ");
             opcao = s.nextInt();
 
