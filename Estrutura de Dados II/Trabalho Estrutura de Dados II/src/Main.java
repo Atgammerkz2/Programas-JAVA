@@ -93,6 +93,20 @@ public class Main {
                     }
                     break;
 
+                case 3:
+                    System.out.print("Informe o valor do nó a ser deletado: ");
+                    int valor_deletar = s.nextInt();
+
+                    No noDeletar = arvore.buscarNo(valor_deletar, EstrategiaBusca.PRE_ORDEM, false);
+                    if(noDeletar != null){
+                        arvore.deletarNo(noDeletar);
+                    } else {
+                        arvore.imprimirArvore();
+                        System.out.println("O valor informado não existe na árvore binária!");
+                    }
+
+                    break;
+
                 case -1:
                     return;
             }

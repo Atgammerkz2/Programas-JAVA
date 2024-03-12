@@ -132,7 +132,7 @@ public class ArvoreBinaria {
         return noAtual;
     }
 
-    private No buscarIntraOrdem(No raiz, int valorProcurado, boolean exibirCaminho){
+    private No buscarIntraOrdem(No raiz, int valorProcurado, boolean exibirCaminho) {
         No noAtual = null;
 
         if(raiz.esquerdo != null){
@@ -160,7 +160,7 @@ public class ArvoreBinaria {
         return noAtual;
     }
 
-    private No buscarPosOrdem(No raiz, int valorProcurado, boolean exibirCaminho){
+    private No buscarPosOrdem(No raiz, int valorProcurado, boolean exibirCaminho) {
         No noAtual = null;
 
         if(raiz.esquerdo != null){
@@ -199,6 +199,44 @@ public class ArvoreBinaria {
         }
 
         return noAtual;
+    }
+
+    public void deletarNo(No noDeletar){
+        int valor = noDeletar.valor;
+
+        if(noDeletar.esquerdo != null && noDeletar.direito != null) {
+            noDeletar.valor = noDeletar.direito.valor;
+            noDeletar.direito = noDeletar.direito.direito;
+        } else if(noDeletar.esquerdo != null || noDeletar.direito != null) {
+            No substituto = noDeletar.esquerdo != null ? noDeletar.esquerdo : noDeletar.direito;
+            noDeletar.valor = substituto.valor;
+            noDeletar.esquerdo = substituto.esquerdo;
+            noDeletar.direito = substituto.direito;
+        } else {
+            if(noDeletar.equals(this.raiz)){
+                this.raiz = null;
+            } else {
+                deletarNoFolha(this.raiz, noDeletar);
+            }
+        }
+
+        this.imprimirArvore();
+        System.out.println("Nó com valor " + valor + " excluído com sucesso!");
+    }
+
+    private void deletarNoFolha(No raiz, No noDeletar){
+        if(raiz == null){
+            return;
+        }
+
+        if(raiz.esquerdo != null && raiz.esquerdo.equals(noDeletar)){
+            raiz.esquerdo = null;
+        } else if(raiz.direito != null && raiz.direito.equals(noDeletar)){
+            raiz.direito = null;
+        }
+
+        deletarNoFolha(raiz.esquerdo, noDeletar);
+        deletarNoFolha(raiz.direito, noDeletar);
     }
 }
 

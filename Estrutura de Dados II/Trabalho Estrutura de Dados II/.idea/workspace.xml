@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6abcf25b-cdd4-46c9-a880-50d55ea2b070" name="Changes" comment="Adição dos algoritmos de busca">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/estruturas/ArvoreBinaria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/estruturas/ArvoreBinaria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/estruturas/EstrategiaBusca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/estruturas/EstrategiaBusca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estruturas/No.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/estruturas/No.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +44,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Michael/Documents/Programas JAVA/Estrutura de Dados II/Trabalho Estrutura de Dados II"
+    "last_opened_file_path": "C:/Users/Michael/Documents/Programas-JAVA/Estrutura de Dados II/Trabalho Estrutura de Dados II"
   }
 }]]></component>
   <component name="RunManager">
