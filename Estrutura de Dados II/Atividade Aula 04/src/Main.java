@@ -19,7 +19,7 @@ public class Main {
 
         List<EstadoTabuleiro> caminho = buscarSolucaoMaisRapida(estadoInicial, estadoIdeal);
         if (caminho != null) {
-            int movimentos = 0;
+            int movimentos = -1;
             for (EstadoTabuleiro estadoTabuleiro : caminho) {
                 estadoTabuleiro.imprimirTabuleiro();
                 System.out.println();
